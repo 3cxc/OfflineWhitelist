@@ -1,9 +1,9 @@
-#是否启用更新检测
-Update: true
+#是否启用更新检测(没做，开了也没用)
+Update: false
 
 #白名单功能管理
 Whitelist:
-  #是否启用白名单代理
+  #是否接管原版白名单
   proxy_mode: true
   #启用此功能后，在线的玩家如没有白名单则会被踢出(符合原版?)
   KickOnlinePlayer: false

@@ -1,4 +1,5 @@
 #没有白名单时的踢出信息
 #支持多行，颜色请使用§
-WhiteList_Kick_Message:
+kick-message:
   - '§c你没有白名单！'
+  - '§c请联系服务器管理员以获取白名单'
