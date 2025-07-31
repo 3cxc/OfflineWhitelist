@@ -24,8 +24,8 @@ repositories {
 dependencies {
     compileOnly("org.spigotmc:spigot-api:1.18.2-R0.1-SNAPSHOT")
     //不知道为什么无法导入，所以先用本地了
-    //compileOnly("com.comphenix.protocol:ProtocolLib:5.3.0")
-    // 添加/lib下的所有jar
+    //compileOnly("com.comphenix.protocol:ProtocolLib:5.4.0")
+    // 添加lib/下的所有jar
     compileOnly fileTree(dir: 'lib', includes: ['*.jar'])
 }
 
