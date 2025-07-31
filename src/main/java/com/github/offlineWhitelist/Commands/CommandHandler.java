@@ -82,9 +82,9 @@ public class CommandHandler implements CommandExecutor, TabExecutor {
 
                 if (args[0].equalsIgnoreCase("remove")){//删除一个玩家的白名单
                     if (!PermissionType.REMOVE.has(sender)){sender.sendMessage(OfflineWhitelist.NoPermissionMessage);return false;}
-                    if (Player_Whitelist.contains(args[1])){
-                        Player_Whitelist.remove(args[1]);
-                        ConfigManager.saveConfig("Whitelist.list",Player_Whitelist);
+                    if (PLAYER_WHITELIST.contains(args[1])){
+                        PLAYER_WHITELIST.remove(args[1]);
+                        ConfigManager.saveConfig("Whitelist.list",PLAYER_WHITELIST);
                         sender.sendMessage(MessageFormat.format("已从白名单内删除玩家 {0}",args[1]));
                         return false;
                     }
