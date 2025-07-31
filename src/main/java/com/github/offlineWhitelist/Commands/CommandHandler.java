@@ -12,7 +12,8 @@ import java.text.MessageFormat;
 import java.util.ArrayList;
 import java.util.List;
 
-import static com.github.offlineWhitelist.ConfigManager.Player_Whitelist;
+import static com.github.offlineWhitelist.ConfigManager.PLAYER_WHITELIST;
+import static com.github.offlineWhitelist.ConfigManager.PROXY_MODE;
 import static com.github.offlineWhitelist.OfflineWhitelist.plugin;
 
 /**
@@ -49,11 +50,11 @@ public class CommandHandler implements CommandExecutor, TabExecutor {
 
                     case "list":
                         if (!PermissionType.LIST.has(sender)){sender.sendMessage(OfflineWhitelist.NoPermissionMessage);return false;}
-                        if (Player_Whitelist.isEmpty()){
+                        if (PLAYER_WHITELIST.isEmpty()){
                             sender.sendMessage("白名单内没有玩家");
                             break;
                         }
-                        sender.sendMessage(MessageFormat.format("白名单内共有 {0} 名玩家: {1}",Player_Whitelist.size(),Player_Whitelist));
+                        sender.sendMessage(MessageFormat.format("白名单内共有 {0} 名玩家: {1}",PLAYER_WHITELIST.size(),PLAYER_WHITELIST));
                         break;
 
                     case "add","remove":
@@ -70,9 +71,9 @@ public class CommandHandler implements CommandExecutor, TabExecutor {
             if (args.length == 2){
                 if (args[0].equalsIgnoreCase("add")){//添加一个玩家到白名单
                     if (!PermissionType.ADD.has(sender)){sender.sendMessage(OfflineWhitelist.NoPermissionMessage);return false;}
-                    if (!Player_Whitelist.contains(args[1])){
-                        Player_Whitelist.add(args[1]);
-                        ConfigManager.saveConfig("Whitelist.list",Player_Whitelist);
+                    if (!PLAYER_WHITELIST.contains(args[1])){
+                        PLAYER_WHITELIST.add(args[1]);
+                        ConfigManager.saveConfig("Whitelist.list",PLAYER_WHITELIST);
                         sender.sendMessage(MessageFormat.format("已添加玩家 {0} 到白名单内",args[1]));
                         return false;
                     }
@@ -113,7 +114,7 @@ public class CommandHandler implements CommandExecutor, TabExecutor {
             if (args[0].equalsIgnoreCase("add")){
                 return getPlayerList();//返回在线的且没有白名单的玩家列表(原版如此)
             }else if (args[0].equalsIgnoreCase("remove")){
-                return Player_Whitelist;
+                return PLAYER_WHITELIST;
             }
         }
         return null;
@@ -127,7 +128,7 @@ public class CommandHandler implements CommandExecutor, TabExecutor {
         ArrayList<Player> OnlinePlayerList = new ArrayList<>(Bukkit.getOnlinePlayers());
         List<String> list = new ArrayList<>();
         for (Player player : OnlinePlayerList) {
-            if (!Player_Whitelist.contains(player.getName())) {//检测玩家是否在白名单内，不在则把该玩家添加到要返回的List中
+            if (!PLAYER_WHITELIST.contains(player.getName())) {//检测玩家是否在白名单内，不在则把该玩家添加到要返回的List中
                 list.add(player.getName());
             }
         }

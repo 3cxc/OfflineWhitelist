@@ -27,14 +27,14 @@ public class LoginPacketListener {
                 //获取登录数据包的玩家资料
                 WrappedGameProfile gameProfile = packet.getGameProfiles().readSafely(0);
                 //玩家不在白名单，且白名单已开启就踢出
-                if (!Player_Whitelist.contains(gameProfile.getName()) && proxy_mode){
+                if (!PLAYER_WHITELIST.contains(gameProfile.getName()) && PROXY_MODE){
                     PacketContainer disconnectPacket = new PacketContainer(PacketType.Login.Server.DISCONNECT);
-                    WrappedChatComponent component = WrappedChatComponent.fromText(KickMessage);
+                    WrappedChatComponent component = WrappedChatComponent.fromText(KICK_MESSAGE);
                     disconnectPacket.getChatComponents().write(0, component);
 
                     ProtocolLibrary.getProtocolManager().sendServerPacket(event.getPlayer(), disconnectPacket);
 
-                    event.getPlayer().kickPlayer("无白名单");
+                    event.getPlayer().kickPlayer("因没有白名单而被踢出");
                     event.setCancelled(true);
                 }
             }

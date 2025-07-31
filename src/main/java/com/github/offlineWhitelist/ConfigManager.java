@@ -10,11 +10,15 @@ import static com.github.offlineWhitelist.OfflineWhitelist.plugin;
 
 public class ConfigManager {
 
-    public static volatile List<String> Player_Whitelist;
+    public static volatile List<String> PLAYER_WHITELIST;
 
-    public static String KickMessage;
+    public static String KICK_MESSAGE;
 
-    public static volatile boolean proxy_mode;
+    public static volatile boolean PROXY_MODE;
+
+    public static volatile boolean KICK_ONLINE_PLAYER;
+
+    public static volatile boolean COMPATIBILITY_MODE;
 
     /**
      * 加载配置文件
@@ -36,7 +40,7 @@ public class ConfigManager {
                 result.append("\n");
             }
         }
-        KickMessage = result.toString();
+        KICK_MESSAGE = result.toString();
     }
 
     /**

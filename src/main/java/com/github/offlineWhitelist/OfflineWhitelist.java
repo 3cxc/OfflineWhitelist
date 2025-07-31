@@ -46,8 +46,10 @@ public final class OfflineWhitelist extends JavaPlugin {
             getLogger().warning(ChatColor.RED + "未安装前置插件ProtocolLib,本插件将自动停用.");
             plugin.getPluginLoader().disablePlugin(plugin);
         }
+
         getLogger().info(ChatColor.GREEN + "作者: 3cxc，Github开源地址: https://github.com/3cxc/OfflineWhitelist");
         getLogger().info(ChatColor.GREEN + "本插件为免费插件，若你是通过付费渠道获得的，那你被骗了");
+
         registerCommands();
 
         if (getServer().getBukkitVersion().contains("1.21")){
@@ -84,7 +86,6 @@ public final class OfflineWhitelist extends JavaPlugin {
         getLogger().info(ChatColor.GREEN+"数据已保存并已卸载");
     }
 
-    //注册命令
     private void registerCommands(){
         PluginCommand command = plugin.getCommand("whitelist");
         if (command != null){
