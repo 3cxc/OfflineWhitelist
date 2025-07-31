@@ -6,6 +6,10 @@ Whitelist:
   # 是否接管原版白名单
   # (是否启用本插件)
   proxy_mode: true
+  # 是否启用兼容检测模式
+  # 如果报错可尝试启用此项
+  # 警告：切换模式需要完全重启服务器
+  compatibility_mode: false
   # 启用此功能后，在线的玩家如没有白名单则会被踢出(符合原版?)
   KickOnlinePlayer: false
   # 玩家白名单
