@@ -155,6 +155,7 @@ public class CommandHandler implements CommandExecutor, TabExecutor {
         // 修改白名单状态
         plugin.getConfig().set("Whitelist.proxy_mode", targetState);
         plugin.saveConfig();
+        PROXY_MODE = targetState;
         sender.sendMessage("已" + (targetState ? "启用" : "关闭") + "白名单");
     }
 }
