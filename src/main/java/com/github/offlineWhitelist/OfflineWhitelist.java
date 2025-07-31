@@ -71,9 +71,9 @@ public final class OfflineWhitelist extends JavaPlugin {
             public void run() {
                 ArrayList<Player> list = new ArrayList<>(getServer().getOnlinePlayers());
                 for (Player player : list) {
-                    if (!Player_Whitelist.contains(player.getName())) {
-                        if (proxy_mode) {
-                            player.kickPlayer(KickMessage);
+                    if (!PLAYER_WHITELIST.contains(player.getName())) {
+                        if (KICK_ONLINE_PLAYER && PROXY_MODE) {
+                            player.kickPlayer(KICK_MESSAGE);
                         }
                     }
                 }
