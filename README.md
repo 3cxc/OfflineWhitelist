@@ -3,7 +3,7 @@
 [![Latest Release](https://img.shields.io/github/v/release/3cxc/OfflineWhitelist)](https://github.com/3cxc/OfflineWhitelist/release)
 [![License](https://img.shields.io/github/license/3cxc/OfflineWhitelist.svg)](https://github.com/3cxc/OfflineWhitelist/blob/master/LICENSE)
 
-> 一个移除了UUID问题的白名单插件
+> 一个解决了离线UUID问题的白名单插件
 > 
 > 该问题是由于离线生成UUID机制与正版生成UUID机制不同所引起的，在离线服务器上表现为从未加入服务器的玩家添加白名单后玩家仍然无法进入的问题。
 >
@@ -28,6 +28,10 @@
 > 对于1.18.2以下的版本,我没有进行测试,不知道是否兼容.(理论上可以)
 >
 > 该插件可能不支持Foila等服务端
+> 
+> 对于 1.21+ 服务端,您可能需要启用兼容模式以解决报错
+> 
+> 请参阅 此 [issue](https://github.com/3cxc/OfflineWhitelist/issues/2)
 
 理论上,本插件支持 1.13-最新版本.
 
@@ -38,7 +42,7 @@
 > [!NOTE]
 > 后续会将命令提示也弄到语言文件
 
-你直接修改踢出提示不就行了?
+多语言(请自行更改)
 
 ## 其他
 本插件代码基于 MIT 协议开源
