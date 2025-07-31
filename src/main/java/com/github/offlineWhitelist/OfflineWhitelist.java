@@ -3,6 +3,7 @@ package com.github.offlineWhitelist;
 import com.comphenix.protocol.ProtocolLibrary;
 import com.comphenix.protocol.ProtocolManager;
 import com.github.offlineWhitelist.Commands.CommandHandler;
+import com.github.offlineWhitelist.Packets.LoginEventHandler;
 import com.github.offlineWhitelist.Packets.LoginPacketListener;
 import org.bukkit.ChatColor;
 import org.bukkit.command.PluginCommand;
