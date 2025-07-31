@@ -22,6 +22,7 @@ public class ConfigManager {
     public void loadConfig(){
         Player_Whitelist = plugin.getConfig().getStringList("Whitelist.list");
         proxy_mode = plugin.getConfig().getBoolean("Whitelist.KickOnlinePlayer",false);
+        COMPATIBILITY_MODE = plugin.getConfig().getBoolean("Whitelist.compatibility_mode");
         //读取语言文件
         File file = new File(plugin.getDataFolder(), "message.yml");
         FileConfiguration messageConfig = YamlConfiguration.loadConfiguration(file);

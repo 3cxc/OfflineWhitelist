@@ -49,8 +49,18 @@ public final class OfflineWhitelist extends JavaPlugin {
         getLogger().info(ChatColor.GREEN + "作者: 3cxc，Github开源地址: https://github.com/3cxc/OfflineWhitelist");
         getLogger().info(ChatColor.GREEN + "本插件为免费插件，若你是通过付费渠道获得的，那你被骗了");
         registerCommands();
-        //注册监听器
-        new LoginPacketListener().addListener();
+
+        if (getServer().getBukkitVersion().contains("1.21")){
+            getLogger().warning("检测到 1.21 版本,自动使用兼容检测方法");
+            getServer().getPluginManager().registerEvents(new LoginEventHandler(),this);
+        }else if (COMPATIBILITY_MODE){
+            getLogger().warning("警告：您正在使用兼容检测方法");
+            getServer().getPluginManager().registerEvents(new LoginEventHandler(),this);
+        }else {
+            //常规方法(ProtocolLib 监听器)
+            new LoginPacketListener().addListener();
+        }
+
         //每300tick执行一次，每次执行检查一次在线玩家是否都有白名单
         //如果发现有在线的玩家没有白名单的，且KickOnlinePlayer为true，则踢出该玩家
         new BukkitRunnable() {
