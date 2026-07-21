@@ -26,7 +26,7 @@ public final class OfflineWhitelist extends JavaPlugin {
 
     @Override
     public void onLoad(){
-        //尝试获取ProtocolLib的API
+        //尝试获取ProtocolLib API
         pm = ProtocolLibrary.getProtocolManager();
         //尝试生成主配置文件和语言文件，如果已经存在则直接加载
         plugin = getPlugin(OfflineWhitelist.class);
@@ -48,7 +48,7 @@ public final class OfflineWhitelist extends JavaPlugin {
             plugin.getPluginLoader().disablePlugin(plugin);
         }
 
-        getLogger().info(ChatColor.GREEN + "作者: 3cxc，Github开源地址: https://github.com/3cxc/OfflineWhitelist");
+        getLogger().info(ChatColor.GREEN + "本插件已在 Github 上开源，地址: https://github.com/3cxc/OfflineWhitelist");
         getLogger().info(ChatColor.GREEN + "本插件为免费插件，若你是通过付费渠道获得的，那你被骗了");
 
         registerCommands();

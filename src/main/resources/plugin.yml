@@ -5,7 +5,7 @@ api-version: '1.13'
 prefix: OfflineWhitelist
 load: STARTUP
 authors: [ 3cxc ]
-description: 一个移除了UUID问题的白名单插件
+description: 一个修复了UUID问题的白名单插件
 website: https://github.com/3cxc/OfflineWhitelist
 depend: [ ProtocolLib ]
 commands:
