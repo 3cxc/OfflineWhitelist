@@ -3,8 +3,8 @@ package com.github.offlineWhitelist;
 import com.comphenix.protocol.ProtocolLibrary;
 import com.comphenix.protocol.ProtocolManager;
 import com.github.offlineWhitelist.Commands.CommandHandler;
-import com.github.offlineWhitelist.Packets.LoginEventHandler;
 import com.github.offlineWhitelist.Packets.LoginPacketListener;
+import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.command.PluginCommand;
 import org.bukkit.entity.Player;
@@ -53,16 +53,8 @@ public final class OfflineWhitelist extends JavaPlugin {
 
         registerCommands();
 
-        if (getServer().getBukkitVersion().contains("1.21")){
-            getLogger().warning("检测到 1.21 版本,自动使用兼容检测方法");
-            getServer().getPluginManager().registerEvents(new LoginEventHandler(),this);
-        }else if (COMPATIBILITY_MODE){
-            getLogger().warning("警告：您正在使用兼容检测方法");
-            getServer().getPluginManager().registerEvents(new LoginEventHandler(),this);
-        }else {
-            //常规方法(ProtocolLib 监听器)
-            new LoginPacketListener().addListener();
-        }
+        // 注册数据包监听器
+        new LoginPacketListener().addListener();
 
         //每300tick执行一次，每次执行检查一次在线玩家是否都有白名单
         //如果发现有在线的玩家没有白名单的，且KickOnlinePlayer为true，则踢出该玩家
@@ -96,5 +88,26 @@ public final class OfflineWhitelist extends JavaPlugin {
             plugin.getLogger().warning(ChatColor.RED+"命令注册失败,安全起见将禁用本插件");
             plugin.getPluginLoader().disablePlugin(plugin);
         }
+    }
+
+    /**
+     * 判断服务端版本是否 >= 指定版本
+     * @param requiredMajor 主版本号，如 1
+     * @param requiredMinor 次版本号，如 19
+     * @return true 表示当前版本 >= requiredMajor.requiredMinor
+     */
+    public static boolean isVersionAtLeast(int requiredMajor, int requiredMinor) {
+        String version = Bukkit.getBukkitVersion(); // 例如 "1.19.4-R0.1-SNAPSHOT"
+        // 去掉 - 后面的内容，只保留 "1.19.4"
+        String[] dashSplit = version.split("-");
+        String[] parts = dashSplit[0].split("\\.");
+
+        int major = Integer.parseInt(parts[0]);
+        int minor = Integer.parseInt(parts[1]);
+
+        if (major != requiredMajor) {
+            return major > requiredMajor;
+        }
+        return minor >= requiredMinor;
     }
 }

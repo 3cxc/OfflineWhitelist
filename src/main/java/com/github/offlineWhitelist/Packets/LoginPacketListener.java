@@ -5,6 +5,7 @@ import com.comphenix.protocol.ProtocolLibrary;
 import com.comphenix.protocol.events.*;
 import com.comphenix.protocol.wrappers.WrappedChatComponent;
 import com.comphenix.protocol.wrappers.WrappedGameProfile;
+import com.github.offlineWhitelist.OfflineWhitelist;
 
 import static com.github.offlineWhitelist.ConfigManager.*;
 import static com.github.offlineWhitelist.OfflineWhitelist.plugin;
@@ -24,10 +25,19 @@ public class LoginPacketListener {
             @Override
             public void onPacketReceiving(PacketEvent event) {
                 PacketContainer packet = event.getPacket();
-                //获取登录数据包的玩家资料
-                WrappedGameProfile gameProfile = packet.getGameProfiles().readSafely(0);
+                String name; // 玩家名称
+
+                if (OfflineWhitelist.isVersionAtLeast(1, 19)) {
+                    // 1.19 及以上用现代数据包字段
+                    name = packet.getStrings().read(0);
+                }else {
+                    //获取登录数据包的玩家资料
+                    WrappedGameProfile gameProfile = packet.getGameProfiles().readSafely(0);
+                    name = gameProfile.getName();
+                }
+
                 //玩家不在白名单，且白名单已开启就踢出
-                if (!PLAYER_WHITELIST.contains(gameProfile.getName()) && PROXY_MODE){
+                if (!PLAYER_WHITELIST.contains(name) && PROXY_MODE){
                     PacketContainer disconnectPacket = new PacketContainer(PacketType.Login.Server.DISCONNECT);
                     WrappedChatComponent component = WrappedChatComponent.fromText(KICK_MESSAGE);
                     disconnectPacket.getChatComponents().write(0, component);
