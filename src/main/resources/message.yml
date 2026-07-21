@@ -1,5 +1,25 @@
-#没有白名单时的踢出信息
-#支持多行，颜色请使用§
+# 无权限时的提示
+no-permission-message: '您没有权限执行此命令'
+# 重载配置文件提示
+reload-config-message: '已重新加载配置文件和语言文件'
+# 白名单内无玩家提示
+whitelist-empty-message: '白名单内没有玩家'
+# 白名单列表提示
+whitelist-list-message: '白名单内共有 {0} 名玩家: {1}'
+# 添加白名单时未指定玩家名的提示
+whitelist-name-error-message: '请指定一个有效的玩家名'
+# 成功添加白名单提示
+whitelist-add-message: '已添加玩家 {0} 到白名单内'
+# 玩家已经在白名单时的提示
+whitelist-exist-message: '此玩家已在白名单内'
+# 成功移除白名单的提示
+whitelist-remove-message: '已从白名单内删除玩家 {0}'
+# 玩家不在白名单时的提示
+whitelist-none-message: '此玩家不在白名单内'
+# 未找到子命令的提示
+whitelist-subcommand-error-message: '无效的子命令'
+# 没有白名单时的踢出信息
+# 支持多行，颜色请使用§
 kick-message:
   - '§c你没有白名单！'
   - '§c请联系服务器管理员以获取白名单'

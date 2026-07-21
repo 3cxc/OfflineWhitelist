@@ -12,8 +12,7 @@ import java.text.MessageFormat;
 import java.util.ArrayList;
 import java.util.List;
 
-import static com.github.offlineWhitelist.ConfigManager.PLAYER_WHITELIST;
-import static com.github.offlineWhitelist.ConfigManager.PROXY_MODE;
+import static com.github.offlineWhitelist.ConfigManager.*;
 import static com.github.offlineWhitelist.OfflineWhitelist.plugin;
 
 /**
@@ -45,24 +44,24 @@ public class CommandHandler implements CommandExecutor, TabExecutor {
                         //重载配置文件
                         plugin.reloadConfig();
                         new ConfigManager().loadConfig();
-                        sender.sendMessage("已重新加载配置文件和语言文件");
+                        sender.sendMessage(RELOAD_CONFIG_MESSAGE);
                         break;
 
                     case "list":
                         if (!PermissionType.LIST.has(sender)){sender.sendMessage(OfflineWhitelist.NoPermissionMessage);return false;}
                         if (PLAYER_WHITELIST.isEmpty()){
-                            sender.sendMessage("白名单内没有玩家");
+                            sender.sendMessage(WHITELIST_EMPTY_MESSAGE);
                             break;
                         }
-                        sender.sendMessage(MessageFormat.format("白名单内共有 {0} 名玩家: {1}",PLAYER_WHITELIST.size(),PLAYER_WHITELIST));
+                        sender.sendMessage(MessageFormat.format(WHITELIST_LIST_MESSAGE,PLAYER_WHITELIST.size(),PLAYER_WHITELIST));
                         break;
 
                     case "add","remove":
-                        sender.sendMessage(ChatColor.RED+"请指定一个有效的玩家名");
+                        sender.sendMessage(ChatColor.RED+WHITELIST_NAME_ERROR_MESSAGE);
                         break;
 
                     default:
-                        sender.sendMessage(ChatColor.RED+"无效的子命令");
+                        sender.sendMessage(ChatColor.RED+WHITELIST_SUBCOMMAND_ERROR_MESSAGE);
                         break;
                 }
                 return false;
@@ -74,10 +73,10 @@ public class CommandHandler implements CommandExecutor, TabExecutor {
                     if (!PLAYER_WHITELIST.contains(args[1])){
                         PLAYER_WHITELIST.add(args[1]);
                         ConfigManager.saveConfig("Whitelist.list",PLAYER_WHITELIST);
-                        sender.sendMessage(MessageFormat.format("已添加玩家 {0} 到白名单内",args[1]));
+                        sender.sendMessage(MessageFormat.format(WHITELIST_ADD_MESSAGE,args[1]));
                         return false;
                     }
-                    sender.sendMessage(ChatColor.RED+"此玩家已在白名单内");
+                    sender.sendMessage(ChatColor.RED+WHITELIST_EXIST_MESSAGE);
                 }
 
                 if (args[0].equalsIgnoreCase("remove")){//删除一个玩家的白名单
@@ -85,10 +84,10 @@ public class CommandHandler implements CommandExecutor, TabExecutor {
                     if (PLAYER_WHITELIST.contains(args[1])){
                         PLAYER_WHITELIST.remove(args[1]);
                         ConfigManager.saveConfig("Whitelist.list",PLAYER_WHITELIST);
-                        sender.sendMessage(MessageFormat.format("已从白名单内删除玩家 {0}",args[1]));
+                        sender.sendMessage(MessageFormat.format(WHITELIST_REMOVE_MESSAGE,args[1]));
                         return false;
                     }
-                    sender.sendMessage(ChatColor.RED+"此玩家不在白名单内");
+                    sender.sendMessage(ChatColor.RED+WHITELIST_NONE_MESSAGE);
                 }
             }
         }

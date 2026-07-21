@@ -22,7 +22,7 @@ public final class OfflineWhitelist extends JavaPlugin {
 
     public static ProtocolManager pm;
 
-    public static String NoPermissionMessage = ChatColor.RED+"您没有权限执行此命令";
+    public static String NoPermissionMessage = ChatColor.RED+NO_PERMISSION_MESSAGE;
 
     @Override
     public void onLoad(){
