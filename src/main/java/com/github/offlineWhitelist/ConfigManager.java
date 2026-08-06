@@ -1,5 +1,6 @@
 package com.github.offlineWhitelist;
 
+import org.bukkit.ChatColor;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
 
@@ -37,7 +38,7 @@ public class ConfigManager {
         File file = new File(plugin.getDataFolder(), "message.yml");
         FileConfiguration messageConfig = YamlConfiguration.loadConfiguration(file);
 
-        NO_PERMISSION_MESSAGE = messageConfig.getString("no-permission-message");
+        NO_PERMISSION_MESSAGE = ChatColor.RED+messageConfig.getString("no-permission-message");
         RELOAD_CONFIG_MESSAGE = messageConfig.getString("reload-config-message");
         WHITELIST_EMPTY_MESSAGE = messageConfig.getString("whitelist-empty-message");
         WHITELIST_LIST_MESSAGE = messageConfig.getString("whitelist-list-message");

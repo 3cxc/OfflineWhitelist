@@ -1,7 +1,6 @@
 package com.github.offlineWhitelist.Commands;
 
 import com.github.offlineWhitelist.ConfigManager;
-import com.github.offlineWhitelist.OfflineWhitelist;
 import com.github.offlineWhitelist.PermissionType;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
@@ -40,7 +39,7 @@ public class CommandHandler implements CommandExecutor, TabExecutor {
                         break;
 
                     case "reload":
-                        if (!PermissionType.RELOAD.has(sender)){sender.sendMessage(OfflineWhitelist.NoPermissionMessage);return false;}
+                        if (!PermissionType.RELOAD.has(sender)){sender.sendMessage(NO_PERMISSION_MESSAGE);return false;}
                         //重载配置文件
                         plugin.reloadConfig();
                         new ConfigManager().loadConfig();
@@ -48,7 +47,7 @@ public class CommandHandler implements CommandExecutor, TabExecutor {
                         break;
 
                     case "list":
-                        if (!PermissionType.LIST.has(sender)){sender.sendMessage(OfflineWhitelist.NoPermissionMessage);return false;}
+                        if (!PermissionType.LIST.has(sender)){sender.sendMessage(NO_PERMISSION_MESSAGE);return false;}
                         if (PLAYER_WHITELIST.isEmpty()){
                             sender.sendMessage(WHITELIST_EMPTY_MESSAGE);
                             break;
@@ -69,7 +68,7 @@ public class CommandHandler implements CommandExecutor, TabExecutor {
 
             if (args.length == 2){
                 if (args[0].equalsIgnoreCase("add")){//添加一个玩家到白名单
-                    if (!PermissionType.ADD.has(sender)){sender.sendMessage(OfflineWhitelist.NoPermissionMessage);return false;}
+                    if (!PermissionType.ADD.has(sender)){sender.sendMessage(NO_PERMISSION_MESSAGE);return false;}
                     if (!PLAYER_WHITELIST.contains(args[1])){
                         PLAYER_WHITELIST.add(args[1]);
                         ConfigManager.saveConfig("Whitelist.list",PLAYER_WHITELIST);
@@ -80,7 +79,7 @@ public class CommandHandler implements CommandExecutor, TabExecutor {
                 }
 
                 if (args[0].equalsIgnoreCase("remove")){//删除一个玩家的白名单
-                    if (!PermissionType.REMOVE.has(sender)){sender.sendMessage(OfflineWhitelist.NoPermissionMessage);return false;}
+                    if (!PermissionType.REMOVE.has(sender)){sender.sendMessage(NO_PERMISSION_MESSAGE);return false;}
                     if (PLAYER_WHITELIST.contains(args[1])){
                         PLAYER_WHITELIST.remove(args[1]);
                         ConfigManager.saveConfig("Whitelist.list",PLAYER_WHITELIST);
@@ -141,7 +140,7 @@ public class CommandHandler implements CommandExecutor, TabExecutor {
      */
     private void SwitchHandler(CommandSender sender, boolean targetState) {
         // 检查是否有权限
-        if (!PermissionType.SWITCH.has(sender)){sender.sendMessage(OfflineWhitelist.NoPermissionMessage);return;}
+        if (!PermissionType.SWITCH.has(sender)){sender.sendMessage(NO_PERMISSION_MESSAGE);return;}
 
         // 获取当前白名单状态
         boolean currentState = plugin.getConfig().getBoolean("Whitelist.proxy_mode");

@@ -22,8 +22,6 @@ public final class OfflineWhitelist extends JavaPlugin {
 
     public static ProtocolManager pm;
 
-    public static String NoPermissionMessage = ChatColor.RED+NO_PERMISSION_MESSAGE;
-
     @Override
     public void onLoad(){
         //尝试获取ProtocolLib API
